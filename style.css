@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: #0b0d10;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+/* MAIN APP */
+
+.piano-app {
+    width: 100%;
+    max-width: 1200px;
+}
+
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 40px;
+}
+
+
+.small-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    color: #8d949d;
+
+    margin-bottom: 8px;
+}
+
+
+h1 {
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+/* VOLUME */
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.volume-control label {
+    color: #aeb4bb;
+    font-size: 13px;
+}
+
+
+#volume {
+    width: 110px;
+
+    accent-color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+/* BUTTON */
+
+#keyboardToggle {
+    background: transparent;
+
+    color: #ffffff;
+
+    border: 1px solid #30353b;
+    border-radius: 8px;
+
+    padding: 10px 16px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+#keyboardToggle:hover {
+    background: #181c21;
+}
+
+
+/* PIANO AREA */
+
+.piano-wrapper {
+    width: 100%;
+
+    background: #15181c;
+
+    border: 1px solid #292e34;
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* PIANO */
+
+.piano {
+    position: relative;
+
+    min-width: 850px;
+    height: 360px;
+
+    display: flex;
+
+    background: #080909;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    user-select: none;
+}
+
+
+/* ALL KEYS */
+
+.key {
+    font-family: inherit;
+
+    border: none;
+
+    cursor: pointer;
+
+    position: relative;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* WHITE KEYS */
+
+.white {
+    flex: 1;
+
+    height: 340px;
+
+    background: #f4f4f1;
+
+    border: 1px solid #c7c7c3;
+
+    border-radius: 0 0 8px 8px;
+
+    color: #17191b;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-bottom: 22px;
+
+    transition:
+        background 0.08s ease,
+        transform 0.08s ease;
+}
+
+
+.white:hover {
+    background: #ffffff;
+}
+
+
+.white.active {
+    background: #d7d9dc;
+
+    transform: translateY(4px);
+}
+
+
+/* BLACK KEYS */
+
+.black {
+    position: absolute;
+
+    z-index: 5;
+
+    top: 10px;
+
+    width: 6.5%;
+
+    height: 210px;
+
+    background: #17191c;
+
+    border: 1px solid #000000;
+
+    border-radius: 0 0 7px 7px;
+
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.45);
+
+    transition:
+        background 0.08s ease,
+        transform 0.08s ease;
+}
+
+
+.black:hover {
+    background: #282c31;
+}
+
+
+.black.active {
+    background: #3b4148;
+
+    transform: translateY(5px);
+}
+
+
+/*
+BLACK KEY POSITIONS
+
+There are 9 white keys.
+
+Positions are based on the spaces between white keys.
+*/
+
+.black[data-note="C#4"] {
+    left: 9.2%;
+}
+
+.black[data-note="D#4"] {
+    left: 20.2%;
+}
+
+.black[data-note="F#4"] {
+    left: 42.4%;
+}
+
+.black[data-note="G#4"] {
+    left: 53.5%;
+}
+
+.black[data-note="A#4"] {
+    left: 64.6%;
+}
+
+.black[data-note="C#5"] {
+    left: 86.8%;
+}
+
+.black[data-note="D#5"] {
+    left: 97.8%;
+}
+
+
+/* KEY LABELS */
+
+.computer-key {
+    font-size: 12px;
+
+    color: #7b8188;
+
+    margin-bottom: 8px;
+
+    text-transform: uppercase;
+}
+
+
+.black .computer-key {
+    color: #8e949b;
+}
+
+
+.note {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.black .note {
+    font-size: 12px;
+}
+
+
+/* INSTRUCTIONS */
+
+.instructions {
+    margin-top: 35px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.instruction-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    background: #111418;
+
+    border: 1px solid #24292f;
+
+    border-radius: 10px;
+}
+
+
+.instruction-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #1b1f24;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+
+.instruction-item strong {
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 4px;
+}
+
+
+.instruction-item p {
+    font-size: 11px;
+
+    color: #777f87;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+
+    margin-top: 35px;
+
+    color: #535a62;
+
+    font-size: 11px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 20px;
+    }
+
+
+    .header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+    }
+
+
+    h1 {
+        font-size: 34px;
+    }
+
+
+    .controls {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+
+    .instructions {
+        grid-template-columns: 1fr;
+    }
+
+
+    .piano-wrapper {
+        padding: 15px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 15px;
+    }
+
+
+    .controls {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .volume-control {
+        width: 100%;
+    }
+
+
+    #volume {
+        flex: 1;
+    }
+
+
+    .piano {
+        min-width: 750px;
+    }
+
+}

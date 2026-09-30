@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Virtual Piano</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="piano-app">
+
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <p class="small-title">VIRTUAL INSTRUMENT</p>
+                <h1>My Piano</h1>
+            </div>
+
+            <div class="controls">
+
+                <div class="volume-control">
+                    <label for="volume">Volume</label>
+
+                    <input
+                        type="range"
+                        id="volume"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.5"
+                    >
+                </div>
+
+                <button id="keyboardToggle">
+                    Keyboard: ON
+                </button>
+
+            </div>
+        </header>
+
+
+        <!-- Piano -->
+        <section class="piano-wrapper">
+
+            <div class="piano">
+
+                <!-- WHITE KEYS -->
+
+                <button class="key white"
+                    data-note="C4"
+                    data-key="a">
+                    <span class="computer-key">A</span>
+                    <span class="note">C</span>
+                </button>
+
+                <button class="key white"
+                    data-note="D4"
+                    data-key="s">
+                    <span class="computer-key">S</span>
+                    <span class="note">D</span>
+                </button>
+
+                <button class="key white"
+                    data-note="E4"
+                    data-key="d">
+                    <span class="computer-key">D</span>
+                    <span class="note">E</span>
+                </button>
+
+                <button class="key white"
+                    data-note="F4"
+                    data-key="f">
+                    <span class="computer-key">F</span>
+                    <span class="note">F</span>
+                </button>
+
+                <button class="key white"
+                    data-note="G4"
+                    data-key="g">
+                    <span class="computer-key">G</span>
+                    <span class="note">G</span>
+                </button>
+
+                <button class="key white"
+                    data-note="A4"
+                    data-key="h">
+                    <span class="computer-key">H</span>
+                    <span class="note">A</span>
+                </button>
+
+                <button class="key white"
+                    data-note="B4"
+                    data-key="j">
+                    <span class="computer-key">J</span>
+                    <span class="note">B</span>
+                </button>
+
+                <button class="key white"
+                    data-note="C5"
+                    data-key="k">
+                    <span class="computer-key">K</span>
+                    <span class="note">C</span>
+                </button>
+
+                <button class="key white"
+                    data-note="D5"
+                    data-key="l">
+                    <span class="computer-key">L</span>
+                    <span class="note">D</span>
+                </button>
+
+
+                <!-- BLACK KEYS -->
+
+                <button class="key black"
+                    data-note="C#4"
+                    data-key="w">
+                    <span class="computer-key">W</span>
+                    <span class="note">C♯</span>
+                </button>
+
+                <button class="key black"
+                    data-note="D#4"
+                    data-key="e">
+                    <span class="computer-key">E</span>
+                    <span class="note">D♯</span>
+                </button>
+
+                <button class="key black"
+                    data-note="F#4"
+                    data-key="t">
+                    <span class="computer-key">T</span>
+                    <span class="note">F♯</span>
+                </button>
+
+                <button class="key black"
+                    data-note="G#4"
+                    data-key="y">
+                    <span class="computer-key">Y</span>
+                    <span class="note">G♯</span>
+                </button>
+
+                <button class="key black"
+                    data-note="A#4"
+                    data-key="u">
+                    <span class="computer-key">U</span>
+                    <span class="note">A♯</span>
+                </button>
+
+                <button class="key black"
+                    data-note="C#5"
+                    data-key="o">
+                    <span class="computer-key">O</span>
+                    <span class="note">C♯</span>
+                </button>
+
+                <button class="key black"
+                    data-note="D#5"
+                    data-key="p">
+                    <span class="computer-key">P</span>
+                    <span class="note">D♯</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Instructions -->
+        <section class="instructions">
+
+            <div class="instruction-item">
+                <span class="instruction-icon">⌨</span>
+
+                <div>
+                    <strong>Play with keyboard</strong>
+                    <p>Use A–P on your keyboard</p>
+                </div>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-icon">🖱</span>
+
+                <div>
+                    <strong>Click the keys</strong>
+                    <p>Mouse and touch supported</p>
+                </div>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-icon">♪</span>
+
+                <div>
+                    <strong>Web Audio</strong>
+                    <p>No external audio files</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>Built with HTML • CSS • JavaScript</p>
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
