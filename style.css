@@ -407,6 +407,7 @@ footer {
 
     body {
         padding: 20px;
+        align-items: flex-start;
     }
 
 
@@ -470,7 +471,30 @@ footer {
 
 
     .piano {
-        min-width: 750px;
+        width: 100%;
+        min-width: 0;
+        height: min(360px, 78vw);
+    }
+
+
+    .white {
+        height: auto;
+    }
+
+
+    .black {
+        height: 58%;
+    }
+
+
+    .computer-key {
+        font-size: 9px;
+    }
+
+
+    .black .computer-key,
+    .black .note {
+        font-size: 8px;
     }
 
 }
