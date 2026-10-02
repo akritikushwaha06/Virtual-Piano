@@ -1,3 +1,13 @@
+/* =========================================================
+   ASTERIA DIGITAL PIANO
+   COMPLETE STYLESHEET
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,496 +15,1857 @@
 }
 
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
-    min-height: 100vh;
+    background: #f5f0e8;
+    color: #211d1a;
 
-    background: #0b0d10;
-    color: #ffffff;
+    font-family:
+        Inter,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
 
-    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+button,
+input {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+::selection {
+    background: #c8aa98;
+    color: #211d1a;
+}
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+
+    --paper: #f5f0e8;
+
+    --paper-dark: #ebe2d7;
+
+    --paper-deep: #ddd0c3;
+
+    --ink: #211d1a;
+
+    --muted: #776f68;
+
+    --accent: #986d57;
+
+    --accent-light: #c5a08b;
+
+    --line: #d8cec3;
+
+    --white: #fffdf8;
+
+    --black: #201c1a;
+
+    --black-soft: #302925;
+
+    --white-key-width: 42px;
+
+    --black-key-width: 26px;
+
+    --piano-height: 330px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+
+    width: calc(100% - 80px);
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    min-height: 86px;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
 
-    padding: 30px;
-}
-
-
-/* MAIN APP */
-
-.piano-app {
-    width: 100%;
-    max-width: 1200px;
-}
-
-
-/* HEADER */
-
-.header {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
 
-    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line);
 }
 
 
-.small-title {
-    font-size: 11px;
-    letter-spacing: 3px;
+.brand {
 
-    color: #8d949d;
-
-    margin-bottom: 8px;
-}
-
-
-h1 {
-    font-size: 42px;
-    font-weight: 600;
-    letter-spacing: -1px;
-}
-
-
-.controls {
     display: flex;
+
     align-items: center;
-    gap: 25px;
-}
 
-
-/* VOLUME */
-
-.volume-control {
-    display: flex;
-    align-items: center;
     gap: 12px;
 }
 
 
-.volume-control label {
-    color: #aeb4bb;
-    font-size: 13px;
-}
+.brand-mark {
 
+    width: 24px;
 
-#volume {
-    width: 110px;
+    height: 24px;
 
-    accent-color: #ffffff;
-
-    cursor: pointer;
-}
-
-
-/* BUTTON */
-
-#keyboardToggle {
-    background: transparent;
-
-    color: #ffffff;
-
-    border: 1px solid #30353b;
-    border-radius: 8px;
-
-    padding: 10px 16px;
-
-    font-size: 12px;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-
-#keyboardToggle:hover {
-    background: #181c21;
-}
-
-
-/* PIANO AREA */
-
-.piano-wrapper {
-    width: 100%;
-
-    background: #15181c;
-
-    border: 1px solid #292e34;
-
-    border-radius: 16px;
-
-    padding: 28px;
-
-    overflow-x: auto;
-
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-}
-
-
-/* PIANO */
-
-.piano {
-    position: relative;
-
-    min-width: 850px;
-    height: 360px;
-
-    display: flex;
-
-    background: #080909;
-
-    border-radius: 10px;
-
-    padding: 10px;
-
-    user-select: none;
-}
-
-
-/* ALL KEYS */
-
-.key {
-    font-family: inherit;
-
-    border: none;
-
-    cursor: pointer;
-
-    position: relative;
-
-    user-select: none;
-
-    -webkit-tap-highlight-color: transparent;
-}
-
-
-/* WHITE KEYS */
-
-.white {
-    flex: 1;
-
-    height: 340px;
-
-    background: #f4f4f1;
-
-    border: 1px solid #c7c7c3;
-
-    border-radius: 0 0 8px 8px;
-
-    color: #17191b;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: flex-end;
-    align-items: center;
-
-    padding-bottom: 22px;
-
-    transition:
-        background 0.08s ease,
-        transform 0.08s ease;
-}
-
-
-.white:hover {
-    background: #ffffff;
-}
-
-
-.white.active {
-    background: #d7d9dc;
-
-    transform: translateY(4px);
-}
-
-
-/* BLACK KEYS */
-
-.black {
-    position: absolute;
-
-    z-index: 5;
-
-    top: 10px;
-
-    width: 6.5%;
-
-    height: 210px;
-
-    background: #17191c;
-
-    border: 1px solid #000000;
-
-    border-radius: 0 0 7px 7px;
-
-    color: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: flex-end;
-    align-items: center;
-
-    padding-bottom: 18px;
-
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.45);
-
-    transition:
-        background 0.08s ease,
-        transform 0.08s ease;
-}
-
-
-.black:hover {
-    background: #282c31;
-}
-
-
-.black.active {
-    background: #3b4148;
-
-    transform: translateY(5px);
-}
-
-
-/*
-BLACK KEY POSITIONS
-
-There are 9 white keys.
-
-Positions are based on the spaces between white keys.
-*/
-
-.black[data-note="C#4"] {
-    left: 9.2%;
-}
-
-.black[data-note="D#4"] {
-    left: 20.2%;
-}
-
-.black[data-note="F#4"] {
-    left: 42.4%;
-}
-
-.black[data-note="G#4"] {
-    left: 53.5%;
-}
-
-.black[data-note="A#4"] {
-    left: 64.6%;
-}
-
-.black[data-note="C#5"] {
-    left: 86.8%;
-}
-
-.black[data-note="D#5"] {
-    left: 97.8%;
-}
-
-
-/* KEY LABELS */
-
-.computer-key {
-    font-size: 12px;
-
-    color: #7b8188;
-
-    margin-bottom: 8px;
-
-    text-transform: uppercase;
-}
-
-
-.black .computer-key {
-    color: #8e949b;
-}
-
-
-.note {
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-
-.black .note {
-    font-size: 12px;
-}
-
-
-/* INSTRUCTIONS */
-
-.instructions {
-    margin-top: 35px;
+    border: 1px solid var(--accent);
 
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    color: var(--accent);
+}
+
+
+.brand-name {
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    letter-spacing: 4px;
+}
+
+
+.main-nav {
+
+    display: flex;
+
+    gap: 34px;
+
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+
+.main-nav a {
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.main-nav a:hover {
+
+    color: var(--ink);
+}
+
+
+.header-status {
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: var(--muted);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.status-dot {
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+}
+
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+main {
+
+    width: calc(100% - 80px);
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+}
+
+
+.eyebrow {
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: var(--accent);
+
+    margin-bottom: 18px;
+}
+
+
+h1,
+h2 {
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: 400;
+
+    letter-spacing: -2px;
+}
+
+
+h1 em,
+h2 em {
+
+    color: var(--accent);
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+
+    min-height: 490px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        0.8fr;
+
+    align-items: center;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.hero-copy {
+
+    max-width: 700px;
+
+    padding: 80px 0;
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            60px,
+            7vw,
+            105px
+        );
+
+    line-height: 0.9;
+
+    max-width: 700px;
+}
+
+
+.hero h1 em {
+
+    display: block;
+
+    font-style: italic;
+
+    padding-left: 75px;
+}
+
+
+.hero-description {
+
+    max-width: 470px;
+
+    margin-top: 32px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+.hero-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    margin-top: 32px;
+}
+
+
+.button {
+
+    border: none;
+
+    padding: 15px 21px;
+
+    font-size: 11px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.button:hover {
+
+    transform: translateY(-2px);
+}
+
+
+.button-dark {
+
+    background: var(--ink);
+
+    color: white;
+}
+
+
+.text-link {
+
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+
+.text-link span {
+
+    color: var(--accent);
+
+    margin-left: 6px;
+}
+
+
+/* =========================================================
+   HERO ART
+   ========================================================= */
+
+.hero-art {
+
+    height: 390px;
+
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+}
+
+
+.art-circle {
+
+    position: absolute;
+
+    width: 280px;
+
+    height: 280px;
+
+    border: 1px solid var(--paper-deep);
+
+    border-radius: 50%;
+}
+
+
+.art-circle::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 28px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 50%;
+}
+
+
+.art-card {
+
+    width: 145px;
+
+    height: 190px;
+
+    background: var(--ink);
+
+    color: #f4eee5;
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        14px 16px 0 var(--paper-deep);
+
+    transform: rotate(4deg);
+}
+
+
+.art-card span {
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+}
+
+
+.art-card strong {
+
+    font-family: Georgia, serif;
+
+    font-size: 70px;
+
+    font-weight: 400;
+
+    line-height: 0.8;
+}
+
+
+.art-card small {
+
+    margin-top: 17px;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: var(--accent-light);
+}
+
+
+/* =========================================================
+   PLAYER BAR
+   ========================================================= */
+
+.player-bar {
+
+    min-height: 76px;
+
+    border-bottom: 1px solid var(--line);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.now-playing {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.control-label {
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+
+.now-playing strong {
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    font-weight: 400;
+}
+
+
+#now-frequency {
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+.player-controls {
+
+    display: flex;
+
+    align-items: center;
 
     gap: 20px;
 }
 
 
-.instruction-item {
+.control-group {
+
     display: flex;
 
     align-items: center;
 
-    gap: 14px;
-
-    padding: 18px;
-
-    background: #111418;
-
-    border: 1px solid #24292f;
-
-    border-radius: 10px;
+    gap: 9px;
 }
 
 
-.instruction-icon {
-    width: 38px;
-    height: 38px;
+.volume-group input {
+
+    width: 130px;
+
+    accent-color: var(--ink);
+}
+
+
+.octave-group {
+
+    padding-left: 18px;
+
+    border-left: 1px solid var(--line);
+}
+
+
+.octave-group strong {
+
+    min-width: 15px;
+
+    text-align: center;
+
+    font-family: Georgia, serif;
+
+    font-weight: 400;
+}
+
+
+.small-button {
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    width: 25px;
+
+    height: 25px;
+
+    color: var(--ink);
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.small-button:hover {
+
+    background: var(--paper-dark);
+}
+
+
+.control-button {
+
+    background: transparent;
+
+    border: 1px solid var(--line);
+
+    padding: 9px 15px;
+
+    font-size: 9px;
+
+    color: var(--ink);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.control-button:hover,
+.control-button.active {
+
+    background: var(--ink);
+
+    color: white;
+
+    border-color: var(--ink);
+}
+
+
+/* =========================================================
+   PIANO SECTION
+   ========================================================= */
+
+.piano-section {
+
+    padding: 100px 0 90px;
+}
+
+
+.section-heading {
 
     display: flex;
-    justify-content: center;
-    align-items: center;
 
-    background: #1b1f24;
+    justify-content: space-between;
 
-    border-radius: 8px;
+    align-items: end;
+
+    margin-bottom: 30px;
+}
+
+
+.section-heading h2,
+.learn-heading h2,
+.guide-title h2 {
+
+    font-size:
+        clamp(
+            48px,
+            6vw,
+            78px
+        );
+
+    line-height: 0.95;
+}
+
+
+.range-label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: right;
+
+    gap: 6px;
+}
+
+
+.range-label span {
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+
+.range-label strong {
+
+    font-family: Georgia, serif;
+
+    font-weight: 400;
 
     font-size: 17px;
 }
 
 
-.instruction-item strong {
-    display: block;
+/* =========================================================
+   PIANO SCROLL
+   ========================================================= */
 
-    font-size: 13px;
+.piano-scroll {
 
-    margin-bottom: 4px;
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding:
+        15px
+        0
+        24px;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        var(--paper-deep)
+        transparent;
+
+    /*
+       This is important for touch screens.
+       Horizontal dragging works, while the
+       keys themselves still receive pointer events.
+    */
+
+    touch-action: pan-x;
 }
 
 
-.instruction-item p {
-    font-size: 11px;
+.piano-scroll::-webkit-scrollbar {
 
-    color: #777f87;
+    height: 5px;
 }
 
 
-/* FOOTER */
+.piano-scroll::-webkit-scrollbar-track {
 
-footer {
+    background: transparent;
+}
+
+
+.piano-scroll::-webkit-scrollbar-thumb {
+
+    background: var(--paper-deep);
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   PIANO
+   ========================================================= */
+
+.piano-keyboard {
+
+    position: relative;
+
+    width:
+        calc(
+            var(--white-key-width) * 36
+        );
+
+    height: var(--piano-height);
+
+    min-width:
+        calc(
+            var(--white-key-width) * 36
+        );
+
+    background: #171311;
+
+    border:
+        7px solid #171311;
+
+    box-shadow:
+        0 20px 35px rgba(
+            33,
+            29,
+            26,
+            0.15
+        );
+
+    user-select: none;
+
+    -webkit-user-select: none;
+}
+
+
+/* =========================================================
+   WHITE KEYS
+   ========================================================= */
+
+.white-keys {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    z-index: 1;
+}
+
+
+.white-key {
+
+    position: relative;
+
+    flex:
+        0 0 var(--white-key-width);
+
+    width: var(--white-key-width);
+
+    height: 100%;
+
+    background: var(--white);
+
+    border-right: 1px solid #d3cbc2;
+
+    border-bottom: 4px solid #bdb4aa;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    padding-bottom: 13px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.06s ease,
+        background 0.06s ease,
+        box-shadow 0.06s ease;
+
+    touch-action: none;
+}
+
+
+.white-key:hover {
+
+    background: #fffefa;
+}
+
+
+.white-key.active {
+
+    transform: translateY(5px);
+
+    background: #ebe5dc;
+
+    border-bottom-width: 1px;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(152, 109, 87, 0.35);
+}
+
+
+.note-name {
+
+    font-size: 7px;
+
+    color: #aaa39b;
+
+    pointer-events: none;
+}
+
+
+.computer-label {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    font-size: 7px;
+
+    color: #b29a8b;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease;
+}
+
+
+.guide-visible .computer-label {
+
+    opacity: 1;
+}
+
+
+.octave-mark {
+
+    position: absolute;
+
+    bottom: 12px;
+
+    left: 7px;
+
+    font-size: 6px;
+
+    color: #a9a19a;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BLACK KEYS
+   ========================================================= */
+
+.black-key {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 5;
+
+    width: var(--black-key-width);
+
+    height: 66%;
+
+    background: var(--black);
+
+    border-radius:
+        0 0 3px 3px;
+
+    border:
+        1px solid #090807;
+
+    box-shadow:
+        4px 7px 7px rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+    color: #d2b7a7;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    padding-bottom: 9px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.06s ease,
+        background 0.06s ease;
+
+    touch-action: none;
+}
+
+
+.black-key:hover {
+
+    background: #2b2522;
+}
+
+
+.black-key.active {
+
+    transform: translateY(4px);
+
+    background: #443832;
+
+    box-shadow:
+        2px 3px 3px rgba(
+            0,
+            0,
+            0,
+            0.2
+        );
+}
+
+
+.black-key .computer-label {
+
+    position: static;
+
+    opacity: 1;
+
+    color: #bda496;
+}
+
+
+/* =========================================================
+   PIANO FOOTER
+   ========================================================= */
+
+.piano-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-top: 15px;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   LEARN SECTION
+   ========================================================= */
+
+.learn-section {
+
+    padding:
+        120px
+        10%;
+
+    border-top: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.learn-heading {
+
+    max-width: 720px;
+
+    margin-bottom: 55px;
+}
+
+
+.learn-heading h2 em {
+
+    display: inline;
+}
+
+
+.learn-heading > p:last-child {
+
+    margin-top: 22px;
+
+    max-width: 500px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+.lesson-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        0.9fr
+        1.1fr;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   LESSON CARDS
+   ========================================================= */
+
+.lesson-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.lesson-card {
+
+    width: 100%;
+
+    min-height: 68px;
+
+    padding:
+        12px
+        16px;
+
+    background: transparent;
+
+    border: 1px solid var(--line);
+
+    display: grid;
+
+    grid-template-columns:
+        30px
+        1fr
+        25px;
+
+    align-items: center;
+
+    text-align: left;
+
+    color: var(--ink);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.lesson-card:hover,
+.lesson-card.active {
+
+    background: #eee5db;
+
+    border-color: #cdbdaf;
+}
+
+
+.lesson-number {
+
+    font-size: 7px;
+
+    color: var(--accent);
+}
+
+
+.lesson-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.lesson-info strong {
+
+    font-family: Georgia, serif;
+
+    font-weight: 400;
+
+    font-size: 14px;
+}
+
+
+.lesson-info small {
+
+    font-size: 9px;
+
+    color: var(--muted);
+}
+
+
+.lesson-arrow {
+
+    color: var(--accent);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   LESSON PLAYER
+   ========================================================= */
+
+.lesson-player {
+
+    min-height: 230px;
+
+    background: var(--ink);
+
+    color: #f6f0e8;
+
+    padding: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+
+.lesson-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #a99b91;
+}
+
+
+.lesson-center {
+
     text-align: center;
-
-    margin-top: 35px;
-
-    color: #535a62;
-
-    font-size: 11px;
 }
 
 
-/* RESPONSIVE */
+.lesson-check {
 
-@media (max-width: 800px) {
+    font-size: 48px;
 
-    body {
-        padding: 20px;
-        align-items: flex-start;
+    font-family: Georgia, serif;
+
+    color: #e9ded4;
+
+    line-height: 1;
+
+    margin-bottom: 10px;
+}
+
+
+.lesson-center p {
+
+    font-size: 9px;
+
+    color: #9d9188;
+
+    margin-bottom: 12px;
+}
+
+
+.lesson-center strong {
+
+    font-family: Georgia, serif;
+
+    font-size: 26px;
+
+    font-weight: 400;
+
+    color: #c49b84;
+}
+
+
+.lesson-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.lesson-progress {
+
+    height: 1px;
+
+    background: #514741;
+
+    flex: 1;
+}
+
+
+#lesson-progress-fill {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #c49b84;
+
+    transition:
+        width 0.25s ease;
+}
+
+
+.lesson-button {
+
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid #64564f;
+
+    padding: 9px 13px;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.lesson-button:hover {
+
+    background: #302a27;
+}
+
+
+/* =========================================================
+   GUIDE SECTION
+   ========================================================= */
+
+.guide-section {
+
+    padding:
+        110px
+        10%;
+
+    display: grid;
+
+    grid-template-columns:
+        0.8fr
+        1.2fr;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+
+.guide-title h2 {
+
+    max-width: 500px;
+}
+
+
+.keyboard-guide {
+
+    background: #e9e0d6;
+
+    border: 1px solid var(--line);
+
+    padding: 30px;
+}
+
+
+.guide-row {
+
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 8px;
+}
+
+
+kbd {
+
+    min-width: 35px;
+
+    height: 35px;
+
+    background: #fffdf9;
+
+    border: 1px solid #d1c7bc;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 10px;
+
+    font-family: Arial, sans-serif;
+}
+
+
+.dark-row {
+
+    padding-left: 22px;
+}
+
+
+.dark-row kbd {
+
+    background: var(--ink);
+
+    color: white;
+
+    border-color: var(--ink);
+}
+
+
+.keyboard-guide p {
+
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+
+    width: calc(100% - 80px);
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    min-height: 100px;
+
+    border-top: 1px solid var(--line);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+
+.footer-brand {
+
+    color: var(--ink);
+
+    font-family: Georgia, serif;
+
+    font-size: 15px;
+
+    letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    :root {
+
+        --white-key-width: 38px;
+
+        --black-key-width: 24px;
+
+        --piano-height: 285px;
     }
 
 
-    .header {
+    .site-header,
+    main,
+    .site-footer {
+
+        width: calc(100% - 40px);
+    }
+
+
+    .hero {
+
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+
+    .hero-copy {
+
+        padding:
+            80px
+            0
+            30px;
+    }
+
+
+    .hero-art {
+
+        height: 300px;
+
+        margin-bottom: 50px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 70px;
+    }
+
+
+    .player-bar {
+
+        align-items: flex-start;
+
         flex-direction: column;
 
-        align-items: flex-start;
-
-        gap: 25px;
+        padding:
+            22px
+            0;
     }
 
 
-    h1 {
-        font-size: 34px;
-    }
+    .player-controls {
 
-
-    .controls {
         width: 100%;
 
-        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
 
-    .instructions {
+    .lesson-layout {
+
         grid-template-columns: 1fr;
     }
 
 
-    .piano-wrapper {
-        padding: 15px;
-    }
+    .guide-section {
 
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
 }
 
 
-@media (max-width: 500px) {
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-    body {
-        padding: 15px;
+@media (max-width: 600px) {
+
+    :root {
+
+        --white-key-width: 34px;
+
+        --black-key-width: 21px;
+
+        --piano-height: 245px;
     }
 
 
-    .controls {
-        flex-direction: column;
+    .site-header,
+    main,
+    .site-footer {
+
+        width: calc(100% - 28px);
+    }
+
+
+    .site-header {
+
+        min-height: 68px;
+    }
+
+
+    .main-nav {
+
+        display: none;
+    }
+
+
+    .header-status {
+
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .hero-copy {
+
+        padding:
+            65px
+            0
+            25px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 55px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .hero h1 em {
+
+        padding-left: 35px;
+    }
+
+
+    .hero-description {
+
+        font-size: 12px;
+
+        max-width: 100%;
+    }
+
+
+    .hero-actions {
+
+        gap: 18px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .hero-art {
+
+        height: 250px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .art-circle {
+
+        width: 190px;
+
+        height: 190px;
+    }
+
+
+    .art-card {
+
+        width: 110px;
+
+        height: 145px;
+    }
+
+
+    .art-card strong {
+
+        font-size: 52px;
+    }
+
+
+    .player-controls {
+
+        gap: 10px;
+    }
+
+
+    .volume-group {
+
+        width: 100%;
+    }
+
+
+    .volume-group input {
+
+        flex: 1;
+
+        width: auto;
+    }
+
+
+    .octave-group {
+
+        border-left: none;
+
+        padding-left: 0;
+    }
+
+
+    .piano-section {
+
+        padding:
+            70px
+            0
+            60px;
+    }
+
+
+    .section-heading {
 
         align-items: flex-start;
 
-        gap: 15px;
+        gap: 20px;
     }
 
 
-    .volume-control {
+    .section-heading h2,
+    .learn-heading h2,
+    .guide-title h2 {
+
+        font-size: 48px;
+    }
+
+
+    .range-label {
+
+        display: none;
+    }
+
+
+    /*
+       The piano deliberately stays wide.
+
+       Users can horizontally scroll it rather
+       than getting tiny unusable keys.
+    */
+
+    .piano-scroll {
+
+        margin-right: -14px;
+
+        width:
+            calc(100% + 14px);
+    }
+
+
+    .piano-footer {
+
+        font-size: 6px;
+
+        letter-spacing: 1px;
+
+        gap: 10px;
+    }
+
+
+    .piano-footer span:nth-child(2) {
+
+        display: none;
+    }
+
+
+    .learn-section {
+
+        padding:
+            80px
+            0;
+    }
+
+
+    .learn-heading {
+
+        margin-bottom: 35px;
+    }
+
+
+    .lesson-player {
+
+        min-height: 260px;
+    }
+
+
+    .lesson-bottom {
+
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .lesson-button {
+
         width: 100%;
+
+        padding: 13px;
     }
 
 
-    #volume {
-        flex: 1;
+    .guide-section {
+
+        padding:
+            80px
+            0;
     }
 
 
-    .piano {
-        width: 100%;
-        min-width: 0;
-        height: min(360px, 78vw);
+    .keyboard-guide {
+
+        padding: 20px;
     }
 
 
-    .white {
-        height: auto;
-    }
+    kbd {
 
+        min-width: 29px;
 
-    .black {
-        height: 58%;
-    }
+        height: 29px;
 
-
-    .computer-key {
         font-size: 9px;
     }
 
 
-    .black .computer-key,
-    .black .note {
-        font-size: 8px;
+    .dark-row {
+
+        padding-left: 15px;
     }
 
+
+    .site-footer {
+
+        min-height: 90px;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .site-footer span:nth-child(2) {
+
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+        animation: none !important;
+    }
 }
